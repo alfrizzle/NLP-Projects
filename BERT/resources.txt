@@ -40,3 +40,9 @@ Fine-tune and host Hugging Face BERT models on Amazon SageMaker
 https://aws.amazon.com/blogs/machine-learning/fine-tune-and-host-hugging-face-bert-models-on-amazon-sagemaker/
 
 https://github.com/aws-samples/finetune-deploy-bert-with-amazon-sagemaker-for-hugging-face
+
+************************************************
+
+How to Create and Deploy Custom Python Models to SageMaker
+
+https://www.predictifsolutions.com/tech-blog/how-to-custom-models-sagemaker/
