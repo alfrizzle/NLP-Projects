@@ -1,0 +1,42 @@
+BERT + SageMaker Resources
+
+************************************************
+
+Fine-tuning a PyTorch BERT model and deploying it with Amazon Elastic Inference on Amazon SageMaker
+
+https://aws.amazon.com/blogs/machine-learning/fine-tuning-a-pytorch-bert-model-and-deploying-it-with-amazon-elastic-inference-on-amazon-sagemaker/
+
+https://github.com/aws-samples/amazon-sagemaker-bert-pytorch
+
+************************************************
+
+Fine-tune and host Hugging Face BERT models on Amazon SageMaker
+
+https://aws.amazon.com/blogs/machine-learning/fine-tune-and-host-hugging-face-bert-models-on-amazon-sagemaker/
+
+https://github.com/aws-samples/finetune-deploy-bert-with-amazon-sagemaker-for-hugging-face
+
+************************************************
+
+https://stackoverflow.com/questions/61708486/whats-difference-between-tokenizer-encode-and-tokenizer-encode-plus-in-hugging
+
+************************************************
+https://towardsdatascience.com/getting-started-with-sagemaker-for-model-training-512b75eae7d7
+
+https://github.com/brent-lemieux/sagemaker_train_demo/blob/main/src/model.py
+
+************************************************
+
+Fine-tuning a PyTorch BERT model and deploying it with Amazon Elastic Inference on Amazon SageMaker
+
+https://aws.amazon.com/blogs/machine-learning/fine-tuning-a-pytorch-bert-model-and-deploying-it-with-amazon-elastic-inference-on-amazon-sagemaker/
+
+https://github.com/aws-samples/amazon-sagemaker-bert-pytorch
+
+************************************************
+
+Fine-tune and host Hugging Face BERT models on Amazon SageMaker
+
+https://aws.amazon.com/blogs/machine-learning/fine-tune-and-host-hugging-face-bert-models-on-amazon-sagemaker/
+
+https://github.com/aws-samples/finetune-deploy-bert-with-amazon-sagemaker-for-hugging-face
