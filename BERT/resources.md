@@ -1,4 +1,4 @@
-# BERT + SageMaker Resources
+# Bert/Transformers + SageMaker Resources
 
 ## Fine-tuning a PyTorch BERT model and deploying it with Amazon Elastic Inference on Amazon SageMaker
 
