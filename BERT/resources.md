@@ -18,6 +18,12 @@
 
 * https://github.com/aws-samples/classify-news-amazon-sagemaker-hugging-face
 
+## Training and Deploying a Sentiment Analysis PyTorch and Hugging Face Models in Amazon SageMaker
+
+* https://github.com/JayThibs/aws-sagemaker-deploy-sentiment-analysis/tree/65d9753a98320adf9a22c23c93be7e07dc1bd741
+
+* [General Outline of Project -- Notebook](https://github.com/JayThibs/aws-sagemaker-deploy-sentiment-analysis/blob/65d9753a98320adf9a22c23c93be7e07dc1bd741/SageMaker%20Project.ipynb)
+
 ## What's difference between tokenizer.encode and tokenizer.encode_plus in Hugging Face
 
 * https://stackoverflow.com/questions/61708486/whats-difference-between-tokenizer-encode-and-tokenizer-encode-plus-in-hugging
