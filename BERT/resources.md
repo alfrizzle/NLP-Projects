@@ -18,6 +18,12 @@
 
 * https://github.com/aws-samples/classify-news-amazon-sagemaker-hugging-face
 
+## Sentiment Classification with Amazon SageMaker
+
+* https://github.com/brent-lemieux/sagemaker_train_demo
+
+* https://towardsdatascience.com/getting-started-with-sagemaker-for-model-training-512b75eae7d7
+
 ## Training and Deploying a Sentiment Analysis PyTorch and Hugging Face Models in Amazon SageMaker
 
 * https://github.com/JayThibs/aws-sagemaker-deploy-sentiment-analysis/tree/65d9753a98320adf9a22c23c93be7e07dc1bd741
