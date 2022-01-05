@@ -50,7 +50,7 @@ class ClassifierDataset(Dataset):
         """Returns the length of the dataset."""
         return len(self.data)
 
-def preprocess_data(df, file_type):
+def preprocess_data(df):
     """Pre-process data for training."""
     # # Convert 5 star scale to binary -- positive (1) or negative (0).
     # star_map = {1: 0, 2: 0, 3: 0, 4: 1, 5: 1}
@@ -62,7 +62,7 @@ def preprocess_data(df, file_type):
     # # Split data into train and valid.
     # traindf, validdf = train_test_split(df[["input", "label"]])
     # df = read_object(df, file_type)
-    traindf, testdf = train_test_split(df, test_size=0.2, stratify=df['label'])
+    traindf, testdf = train_test_split(df, test_size=args.test_size, stratify=df['label'])
     return traindf, testdf
 
 def compute_metrics(output):
@@ -84,13 +84,13 @@ def compute_metrics(output):
 def main(args):
     """Executes training job."""
     # Load data into a pandas DataFrame.
-    df = read_object(args.input_path, file_type="csv")
+    df = read_object(args.input_path, args.file_type)
     if args.max_data_rows:
         df = df.iloc[:args.max_data_rows].copy()
     print(f"Data contains {len(df)} rows")
 
     # Preprocess and featurize data.
-    traindf, validdf = preprocess_data(df, file_type='csv')
+    traindf, validdf = preprocess_data(df)
 
     # Create data set for model input.
     train_dataset = ClassifierDataset(traindf, args.model_name, args.max_sequence_length)
@@ -119,7 +119,7 @@ def main(args):
         warmup_steps=500,
         weight_decay=args.weight_decay,
         logging_dir=os.path.join(args.model_dir, "logs"),
-        logging_steps=250,
+        logging_steps=10,
         evaluation_strategy="steps",
         load_best_model_at_end=True
     )
@@ -165,7 +165,7 @@ if __name__ =='__main__':
 
     # Hyperparameters from launch_training_job.py get passed in as command line args.
     parser.add_argument('--input_path', type=str)
-    parser.add_argument('--train_size', type=float, default=.85)
+    parser.add_argument('--test_size', type=float, default=.2)
     parser.add_argument('--adam_epsilon', type=float, default=1e-8)
     parser.add_argument('--epochs', type=int, default=2)
     parser.add_argument('--learning_rate', type=float, default=5e-5)
@@ -175,8 +175,9 @@ if __name__ =='__main__':
     parser.add_argument('--model_name', type=str, default='distilbert-base-uncased')
     parser.add_argument('--train_batch_size', type=int, default=16)
     parser.add_argument('--valid_batch_size', type=int, default=128)
-    parser.add_argument('--eval_dir', type=str, default='../eval_results')
-    parser.add_argument('--model_dir', type=str, default='../model') # where trained model is saved
+    parser.add_argument('--file_type', type=str, default='csv') # specify whether input file is csv or json (has to be one of the two)
+    parser.add_argument('--eval_dir', type=str, default='../model/output') # set this to SM's model_dir path when using in SageMaker
+    parser.add_argument('--model_dir', type=str, default='../model') # where trained model is saved when running the script locally (outside of SageMaker)
     
     # # SageMaker environment variables.
     # parser.add_argument('--hosts', type=list, default=os.environ['SM_HOSTS'])
