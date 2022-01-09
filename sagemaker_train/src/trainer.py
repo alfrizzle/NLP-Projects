@@ -4,6 +4,9 @@ This tutorial borrows from https://huggingface.co/transformers/custom_datasets.h
 import argparse
 import os
 import json
+import pathlib
+import logging
+import sys
 
 # import boto3
 import numpy as np
@@ -13,9 +16,18 @@ from sklearn.model_selection import train_test_split
 import torch
 from torch.utils.data import Dataset, DataLoader, RandomSampler
 from transformers import AdamW, AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
+from transformers.trainer_utils import get_last_checkpoint
 
 from utils import read_object
 
+# Set up logging
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(
+  level=logging.getLevelName("INFO"),
+  handlers=[logging.StreamHandler(sys.stdout)],
+  format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+  )
 
 class ClassifierDataset(Dataset):
     """Inherits from torch.utils.data.Dataset.
@@ -87,6 +99,7 @@ def main(args):
     df = read_object(args.input_path, args.file_type)
     if args.max_data_rows:
         df = df.iloc[:args.max_data_rows].copy()
+    logger.info(f" Dataset contains {len(df)} rows")
     print(f"Data contains {len(df)} rows")
 
     # Preprocess and featurize data.
@@ -95,6 +108,8 @@ def main(args):
     # Create data set for model input.
     train_dataset = ClassifierDataset(traindf, args.model_name, args.max_sequence_length)
     valid_dataset = ClassifierDataset(validdf, args.model_name, args.max_sequence_length)
+    logger.info(f" loaded train_dataset length is: {len(train_dataset)}")
+    logger.info(f" loaded test_dataset length is: {len(valid_dataset)}")
     print(train_dataset[0])
 
     # Define model and trainer.
@@ -109,22 +124,28 @@ def main(args):
         num_labels=2
     )
 
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+
+    # define training args
     training_args = TrainingArguments(
-        output_dir=os.path.join(args.model_dir, "output"),
+        output_dir=os.path.join(args.model_dir),
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.train_batch_size,
         per_device_eval_batch_size=args.valid_batch_size,
         learning_rate=args.learning_rate,
         adam_epsilon=args.adam_epsilon,
-        warmup_steps=500,
+        warmup_steps=args.warmup_steps,
         weight_decay=args.weight_decay,
         logging_dir=os.path.join(args.model_dir, "logs"),
-        logging_steps=10,
+        logging_steps=args.logging_steps,
         evaluation_strategy="steps",
         load_best_model_at_end=True
     )
+
+    # create trainer instance
     trainer = Trainer(
         model=model,
+        tokenizer=tokenizer,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=valid_dataset,
@@ -132,22 +153,41 @@ def main(args):
     )
 
     # Train the model.
-    trainer.train()
+    if get_last_checkpoint(args.model_dir) is not None:
+        logger.info("***** continue training *****")
+        last_checkpoint = get_last_checkpoint(args.model_dir)
+        trainer.train(resume_from_checkpoint=last_checkpoint)
+    else:
+        trainer.train()
 
     # Evaluate the model
     # eval = trainer.evaluate()
     eval_result = trainer.evaluate(eval_dataset=valid_dataset)
     
-    # Export eval results as json
-    keep = ['eval_loss', 'eval_precision', 'eval_recall', 'eval_f1_score', 'eval_roc_auc']
+    # Select only the 5 relevant metrics keys
+    keep = ['eval_f1_score', 'eval_loss', 'eval_precision', 'eval_recall', 'eval_roc_auc']
     partial_dict = {k: v for k, v in eval_result.items() if k in keep}
+
+    # initializing new dict key names
+    dict_key_map = {'eval_loss' : 'Loss',
+                    'eval_precision' : 'Precision',
+                    'eval_recall'    : 'Recall', 
+                    'eval_f1_score'  : 'f1',
+                    'eval_roc_auc'   : 'ROC_AUC'
+                    }
     
+    # changing keys of dictionary
+    final_dict = {dict_key_map.get(k, k): v for k, v in partial_dict.items()}
+
+    # Save eval results as json file in new evaluation folder
+    # pathlib.Path("evaluation").mkdir(parents=True, exist_ok=True)
     with open(os.path.join(args.eval_dir, 'eval_results.json'), 'w') as fp:
       print('****** Eval Results ******')
-      json.dump(partial_dict, fp)
+      json.dump(final_dict, fp)
 
     # Save the trained model
     trainer.save_model(args.model_dir)
+    # trainer.save_state()
 
     # # Save the model to the output_path defined in train_model.py.
     # device = torch.device("cuda")
@@ -172,11 +212,13 @@ if __name__ =='__main__':
     parser.add_argument('--weight_decay', type=float, default=0.0)
     parser.add_argument('--max_data_rows', type=int, default=None)
     parser.add_argument('--max_sequence_length', type=int, default=128)
+    parser.add_argument('--warmup_steps', type=int, default=500)
+    parser.add_argument('--logging_steps', type=int, default=10)
     parser.add_argument('--model_name', type=str, default='distilbert-base-uncased')
     parser.add_argument('--train_batch_size', type=int, default=16)
     parser.add_argument('--valid_batch_size', type=int, default=128)
     parser.add_argument('--file_type', type=str, default='csv') # specify whether input file is csv or json (has to be one of the two)
-    parser.add_argument('--eval_dir', type=str, default='../model/output') # set this to SM's model_dir path when using in SageMaker
+    parser.add_argument('--eval_dir', type=str, default='../model/evaluation') # set this to SM's model_dir path when using in SageMaker
     parser.add_argument('--model_dir', type=str, default='../model') # where trained model is saved when running the script locally (outside of SageMaker)
     
     # # SageMaker environment variables.
