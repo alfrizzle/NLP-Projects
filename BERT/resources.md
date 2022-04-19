@@ -4,6 +4,7 @@
 
 * https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-push.html#image-push-iam
 * https://transang.me/aws-roles-to-push-docker-image-to-elastic-container-registry/
+* https://atldevops.medium.com/push-a-docker-image-to-aws-ecr-fbc7a845c7c4
 
 ## Train Language Model from Scratch
 * https://huggingface.co/blog/how-to-train
