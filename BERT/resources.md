@@ -11,6 +11,9 @@
 * https://github.com/HerringForks/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT
 * https://github.com/aws/amazon-sagemaker-examples/tree/main/training/distributed_training/pytorch
 
+## Choosing Right GPU for Deep Learning
+* https://towardsdatascience.com/choosing-the-right-gpu-for-deep-learning-on-aws-d69c157d8c86
+
 ## Fine-tuning a PyTorch BERT model and deploying it with Amazon Elastic Inference on Amazon SageMaker
 
 * https://aws.amazon.com/blogs/machine-learning/fine-tuning-a-pytorch-bert-model-and-deploying-it-with-amazon-elastic-inference-on-amazon-sagemaker/
