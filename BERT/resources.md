@@ -1,5 +1,16 @@
 # Bert/Transformers + SageMaker Resources
 
+## Pushing Docker Images to ECR
+
+* https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-push.html#image-push-iam
+* https://transang.me/aws-roles-to-push-docker-image-to-elastic-container-registry/
+
+## Train Language Model from Scratch
+* https://huggingface.co/blog/how-to-train
+* https://github.com/aws/amazon-sagemaker-examples/tree/main/training/distributed_training/pytorch/model_parallel/bert
+* https://github.com/HerringForks/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT
+* https://github.com/aws/amazon-sagemaker-examples/tree/main/training/distributed_training/pytorch
+
 ## Fine-tuning a PyTorch BERT model and deploying it with Amazon Elastic Inference on Amazon SageMaker
 
 * https://aws.amazon.com/blogs/machine-learning/fine-tuning-a-pytorch-bert-model-and-deploying-it-with-amazon-elastic-inference-on-amazon-sagemaker/
