@@ -15,3 +15,8 @@
 
 ## SageMaker Huggingface Workshop Series
 * https://github.com/philschmid/huggingface-sagemaker-workshop-series
+
+## Use Checkpoints in Amazon SageMaker
+* https://docs.aws.amazon.com/sagemaker/latest/dg/model-checkpoints.html
+* https://huggingface.co/docs/sagemaker/train#training-output-management
+* https://huggingface.co/docs/sagemaker/train#spot-instances
