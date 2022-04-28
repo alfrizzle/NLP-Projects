@@ -9,6 +9,14 @@
 * https://aws.amazon.com/blogs/machine-learning/bring-your-own-model-with-amazon-sagemaker-script-mode/
 * https://github.com/aws/amazon-sagemaker-examples/blob/main/sagemaker-script-mode/sagemaker-script-mode.ipynb
 
+### Distributed Data Parallel (DDP)
+* https://sagemaker-examples.readthedocs.io/en/latest/training/distributed_training/index.html#pytorch-distributed
+* https://aws.amazon.com/blogs/aws/managed-data-parallelism-in-amazon-sagemaker-simplifies-training-on-large-datasets/
+* https://github.com/huggingface/notebooks/blob/main/sagemaker/03_distributed_training_data_parallelism/sagemaker-notebook.ipynb
+* https://jdhao.github.io/2019/11/01/pytorch_distributed_training/
+* https://pytorch.org/docs/stable/_modules/torch/utils/data/distributed.html#DistributedSampler
+* https://pytorch.org/docs/stable/distributed.html
+
 ## Available Deep Learning Containers (DLCs)
 * https://github.com/aws/deep-learning-containers/blob/master/available_images.md
 * https://github.com/aws/deep-learning-containers
