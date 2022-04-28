@@ -23,6 +23,10 @@
 * https://pytorch.org/docs/stable/distributed.html
 * https://huggingface.co/transformers/v4.4.2/sagemaker.html
 
+## Instance Types
+* [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)
+* [Amazon SageMaker endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/sagemaker.html)
+
 ## Available Deep Learning Containers (DLCs)
 * https://github.com/aws/deep-learning-containers/blob/master/available_images.md
 * https://github.com/aws/deep-learning-containers
