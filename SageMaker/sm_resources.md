@@ -16,6 +16,7 @@
 * https://jdhao.github.io/2019/11/01/pytorch_distributed_training/
 * https://pytorch.org/docs/stable/_modules/torch/utils/data/distributed.html#DistributedSampler
 * https://pytorch.org/docs/stable/distributed.html
+* https://huggingface.co/transformers/v4.4.2/sagemaker.html
 
 ## Available Deep Learning Containers (DLCs)
 * https://github.com/aws/deep-learning-containers/blob/master/available_images.md
