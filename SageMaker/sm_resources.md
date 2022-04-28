@@ -11,6 +11,7 @@
 
 ### Distributed Data Parallel (DDP)
 * https://sagemaker-examples.readthedocs.io/en/latest/training/distributed_training/index.html#pytorch-distributed
+* https://sagemaker.readthedocs.io/en/stable/api/training/smd_data_parallel_use_sm_pysdk.html#sdp-api-docs-launch-training-job
 * https://aws.amazon.com/blogs/aws/managed-data-parallelism-in-amazon-sagemaker-simplifies-training-on-large-datasets/
 * https://github.com/huggingface/notebooks/blob/main/sagemaker/03_distributed_training_data_parallelism/sagemaker-notebook.ipynb
 * https://jdhao.github.io/2019/11/01/pytorch_distributed_training/
