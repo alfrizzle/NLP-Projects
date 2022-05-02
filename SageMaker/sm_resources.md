@@ -38,3 +38,4 @@
 * https://docs.aws.amazon.com/sagemaker/latest/dg/model-checkpoints.html
 * https://huggingface.co/docs/sagemaker/train#training-output-management
 * https://huggingface.co/docs/sagemaker/train#spot-instances
+* https://github.com/curiousily/Getting-Things-Done-with-Pytorch/blob/master/08.sentiment-analysis-with-bert.ipynb
