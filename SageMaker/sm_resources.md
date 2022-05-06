@@ -44,3 +44,4 @@
 * [Managing ML Experimentation using Amazon SageMaker Search](https://sagemaker-examples.readthedocs.io/en/latest/advanced_functionality/search/ml_experiment_management_using_search.html#Use-Amazon-SageMaker-Search-to-organize-and-evaluate-experiments)
 * [Amazon SageMaker Experiments – Organize, Track And Compare Your Machine Learning Trainings](https://aws.amazon.com/blogs/aws/amazon-sagemaker-experiments-organize-track-and-compare-your-machine-learning-trainings/)
 * [Manage Machine Learning with Amazon SageMaker Experiments](https://docs.aws.amazon.com/sagemaker/latest/dg/experiments.html)
+* [SageMaker Experiments Example Notebooks](https://github.com/aws/amazon-sagemaker-examples/tree/main/sagemaker-experiments)
